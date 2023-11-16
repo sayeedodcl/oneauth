@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:oneauth/utilits/themes/color_data.dart';
 import 'package:oneauth/utilits/themes/font_data.dart';
+import 'package:oneauth/views/screens/auth/oneTimeLogin.dart';
 import 'package:oneauth/views/screens/dashboard/main_dashboard.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -101,7 +102,7 @@ class _RegistrationState extends State<Registration> {
                 alignment: Alignment.center,
                 color: Colors.red[700],
                 child: Text(
-                  "Login In".toUpperCase(),
+                  "SignUp".toUpperCase(),
                   style: FontDatas.h2regular(ColorsData.white),
                 ),
               )
@@ -125,13 +126,14 @@ class _RegistrationState extends State<Registration> {
                 /***************************************** server check************************* */
               } else {
                 Get.to(
-                  MainDashboard(),
+                  OneTimeLogin(),
                 );
               }
             } catch (e) {
               print(e);
             }
           },
+          /****************************** back area ****************** */
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

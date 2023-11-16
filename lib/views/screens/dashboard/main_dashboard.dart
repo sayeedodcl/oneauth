@@ -103,14 +103,17 @@ class _MainDashboardState extends State<MainDashboard> {
           padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
           child: Column(
             children: [
-              SizedBox(
-                height: 35.sp,
-                child: Row(
-                  children: [
-                    Image(
-                        width: 25.w,
-                        image: const AssetImage("assets/applogo.png"))
-                  ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.sp),
+                child: SizedBox(
+                  height: 25.sp,
+                  child: Row(
+                    children: [
+                      Image(
+                          width: 25.w,
+                          image: const AssetImage("assets/applogo.png"))
+                    ],
+                  ),
                 ),
               ),
               Expanded(

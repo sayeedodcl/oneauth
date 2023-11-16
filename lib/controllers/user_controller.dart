@@ -34,10 +34,9 @@ class UserController {
           /// ********** saving user info to local DB ***********
           HiveDB().storeUser("userinfo", "info", resBody);
         } else {
-          Get.snackbar(
-            "warning",
-            "Login failed Try again",
-          );
+          Get.showSnackbar(const GetSnackBar(
+            message: "Login failed Try again",
+          ));
         }
       } else {
         Get.snackbar(
@@ -79,16 +78,14 @@ class UserController {
           /// ********** saving user info to local DB ***********
           HiveDB().storeUser("userinfo", "info", resBody);
         } else {
-          Get.snackbar(
-            "warning",
-            "Login failed Try again",
-          );
+          Get.showSnackbar(const GetSnackBar(
+            message: "Login failed Try again",
+          ));
         }
       } else {
-        Get.snackbar(
-          "",
-          "Server error ${respons.statusCode}",
-        );
+        Get.showSnackbar(const GetSnackBar(
+          message: "Server error ",
+        ));
       }
     } catch (e) {
       print(e);

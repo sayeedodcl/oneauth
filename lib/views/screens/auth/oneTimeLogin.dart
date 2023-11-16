@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:ntp/ntp.dart';
 import 'package:oneauth/utilits/db/hive.dart';
+import 'package:oneauth/utilits/styles.dart';
 import 'package:oneauth/utilits/themes/color_data.dart';
 import 'package:oneauth/utilits/themes/font_data.dart';
+import 'package:oneauth/views/screens/auth/resgistration.dart';
 import 'package:oneauth/views/screens/dashboard/main_dashboard.dart';
 import 'package:oneauth/views/screens/dashboard/otpscan.dart';
 import 'package:otp/otp.dart';
@@ -99,78 +101,98 @@ class _OneTimeLoginState extends State<OneTimeLogin> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.w),
-          child: Column(
-            children: [
-              // /*****************
-              ///* **** Logo area
-              /// * ********** *************  */
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 25.sp),
-                  child: Image(
-                    width: Adaptive.w(30),
-                    image: AssetImage("assets/applogo.png"),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // /*****************
+                ///* **** Logo area
+                /// * ********** *************  */
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 25.sp),
+                    child: Image(
+                      width: Adaptive.w(30),
+                      image: AssetImage("assets/applogo.png"),
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width: 100.w,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 4.w,
-                    ),
-                    Text(
-                      "Welcome to ",
-                      textAlign: TextAlign.center,
-                      style: FontDatas.fontCustom(ColorsData.white, 18.5.sp,
-                          FontWeight.w200, null, 0.8),
-                    ),
-                    SizedBox(
-                      height: 1.w,
-                    ),
-                    Text(
-                      "One Authenticator",
-                      textAlign: TextAlign.center,
-                      style: FontDatas.fontCustom(ColorsData.white, 21.5.sp,
-                          FontWeight.w400, null, 0.5),
-                    ),
-                    SizedBox(
-                      height: 1.w,
-                    ),
-                    Text(
-                      "Secure Your Account",
-                      textAlign: TextAlign.center,
-                      style: FontDatas.fontCustom(ColorsData.white, 25.5.sp,
-                          FontWeight.w600, null, 0.1),
-                    ),
-                    SizedBox(
-                      height: 6.w,
-                    ),
-                  ],
+                Container(
+                  width: 100.w,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 4.w,
+                      ),
+                      Text(
+                        "Welcome to ",
+                        textAlign: TextAlign.center,
+                        style: FontDatas.fontCustom(ColorsData.white, 18.5.sp,
+                            FontWeight.w200, null, 0.8),
+                      ),
+                      SizedBox(
+                        height: 1.w,
+                      ),
+                      Text(
+                        "One Authenticator",
+                        textAlign: TextAlign.center,
+                        style: FontDatas.fontCustom(ColorsData.white, 21.5.sp,
+                            FontWeight.w400, null, 0.5),
+                      ),
+                      SizedBox(
+                        height: 1.w,
+                      ),
+                      Text(
+                        "Secure Your Account",
+                        textAlign: TextAlign.center,
+                        style: FontDatas.fontCustom(ColorsData.white, 25.5.sp,
+                            FontWeight.w600, null, 0.1),
+                      ),
+                      SizedBox(
+                        height: 6.w,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              /****************************
-             * ************form input ***********
-             * *********************** */
-              formdata(),
-              SizedBox(
-                height: 4.3.w,
-              ),
-              /************************* button for login *************************** */
-              Container(
-                width: 100.w,
-                height: 6.h,
-                alignment: Alignment.center,
-                color: Colors.red[700],
-                child: Text(
-                  "Login In".toUpperCase(),
-                  style: FontDatas.h2regular(ColorsData.white),
+                /****************************
+               * ************form input ***********
+               * *********************** */
+                formdata(),
+                SizedBox(
+                  height: 4.3.w,
                 ),
-              )
-            ],
+                /************************* button for login *************************** */
+                GestureDetector(
+                  onTap: () {
+                    try {
+                      if (userid.text.isNotEmpty && password.text.isNotEmpty) {
+                        Styles.showToastSucces(
+                            "Login success welcome sir", context);
+                      } else {
+                        Styles.showToastError("Field can't be empty", context);
+                        Get.to(
+                          MainDashboard(),
+                        );
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
+                  /************************************ login button ************************************ */
+                  child: Container(
+                    width: 100.w,
+                    height: 6.h,
+                    alignment: Alignment.center,
+                    color: Colors.red[700],
+                    child: Text(
+                      "Login In".toUpperCase(),
+                      style: FontDatas.h2regular(ColorsData.white),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -178,22 +200,24 @@ class _OneTimeLoginState extends State<OneTimeLogin> {
       /*************************
        * ********navigato to dashboard *****
        * ************** */
-      floatingActionButton: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4.h),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 15),
         child: GestureDetector(
           onTap: () {
             try {
               if (userid.text.isNotEmpty && password.text.isNotEmpty) {
-                Get.snackbar("Login success", "welcome sir");
+                Styles.showToastSucces("Login success welcome sir", context);
               } else {
                 Get.to(
-                  MainDashboard(),
+                  Registration(),
                 );
               }
             } catch (e) {
               print(e);
             }
           },
+
+          /****************************************************** sign Up UI ********************* */
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -229,7 +253,7 @@ class _OneTimeLoginState extends State<OneTimeLogin> {
           decoration: InputDecoration(
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
-            labelText: "Enter ODCL ID",
+            labelText: "Enter Email",
             labelStyle: FontDatas.h3Normal(ColorsData.white),
             border: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white54, width: 1),
