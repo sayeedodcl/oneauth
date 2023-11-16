@@ -259,7 +259,7 @@ class _OneTimeLoginState extends State<OneTimeLogin> {
           decoration: InputDecoration(
             contentPadding:
                 EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
-            labelText: "Enter ODCL Key",
+            labelText: "Enter Password",
             labelStyle: FontDatas.h3Normal(ColorsData.white),
             border: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white54, width: 1),
