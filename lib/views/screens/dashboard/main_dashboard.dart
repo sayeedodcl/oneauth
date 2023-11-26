@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:oneauth/utilits/customwidget/circulerLoader.dart';
 import 'package:oneauth/utilits/db/hive.dart';
+import 'package:oneauth/utilits/styles.dart';
 import 'package:oneauth/utilits/themes/color_data.dart';
 import 'package:oneauth/utilits/themes/font_data.dart';
 import 'package:oneauth/views/screens/auth/auth.dart';
